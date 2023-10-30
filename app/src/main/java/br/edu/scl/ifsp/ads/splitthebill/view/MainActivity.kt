@@ -3,12 +3,15 @@ package br.edu.scl.ifsp.ads.splitthebill.view
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.ContextMenu
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.ArrayAdapter
+import android.view.View
+import android.widget.AdapterView
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import br.edu.scl.ifsp.ads.splitthebill.R
+import br.edu.scl.ifsp.ads.splitthebill.adapter.ParticipantAdapter
 import br.edu.scl.ifsp.ads.splitthebill.databinding.ActivityMainBinding
 import br.edu.scl.ifsp.ads.splitthebill.model.Constant.EXTRA_PARTICIPANT
 import br.edu.scl.ifsp.ads.splitthebill.model.Participant
@@ -23,13 +26,10 @@ class MainActivity : AppCompatActivity() {
         ParticipantListManager()
     }
 
-    private val participantAdapter: ArrayAdapter<String> by lazy {
-        ArrayAdapter(
+    private val participantAdapter: ParticipantAdapter by lazy {
+        ParticipantAdapter(
             this,
-            android.R.layout.simple_list_item_1,
-            participantListManager.participantList.map { _participant ->
-                _participant.name
-            }
+            participantListManager
         )
     }
 
@@ -55,13 +55,14 @@ class MainActivity : AppCompatActivity() {
             if (result.resultCode == RESULT_OK) {
                 val participant = result.data?.getParcelableExtra<Participant>(EXTRA_PARTICIPANT)
                 participant?.let { _participant ->
-                    participantListManager.addNewParticipant(_participant)
+                    participantListManager.addOrUpdateParticipant(_participant)
                     updateTotalAmountSubtitle()
-                    participantAdapter.add(_participant.name)
                     participantAdapter.notifyDataSetChanged()
                 }
             }
         }
+
+        registerForContextMenu(amb.participantLv)
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -77,6 +78,32 @@ class MainActivity : AppCompatActivity() {
             }
             else -> false
         }
+    }
+
+    override fun onCreateContextMenu(
+        menu: ContextMenu?,
+        v: View?,
+        menuInfo: ContextMenu.ContextMenuInfo?
+    ) {
+        menuInflater.inflate(R.menu.context_menu_main, menu)
+    }
+
+    override fun onContextItemSelected(item: MenuItem): Boolean {
+        val position = (item.menuInfo as AdapterView.AdapterContextMenuInfo).position
+        return when (item.itemId) {
+            R.id.removeParticipantMi -> {
+                true
+            }
+            R.id.editParticipantMi -> {
+                true
+            }
+            else -> true
+        }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        unregisterForContextMenu(amb.participantLv)
     }
 
     private fun updateTotalAmountSubtitle() {

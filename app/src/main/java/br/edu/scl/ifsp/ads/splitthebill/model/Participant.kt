@@ -7,7 +7,7 @@ import kotlinx.parcelize.Parcelize
 data class Participant(
     var id: Int,
     var name: String,
-    var amountSpent: Float,
+    var amountSpent: Double,
     var itemsBought: String,
 ) : Parcelable {
 

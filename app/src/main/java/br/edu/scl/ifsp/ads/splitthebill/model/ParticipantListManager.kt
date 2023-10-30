@@ -23,8 +23,16 @@ class ParticipantListManager {
         amountOwedPerPerson = totalPurchaseAmount / participantList.count()
     }
 
-    fun addNewParticipant(participant: Participant) {
-        participantList.add(participant)
+    fun addOrUpdateParticipant(participant: Participant) {
+        if(participantList.any { it.id == participant.id }) {
+            val position = participantList.indexOfFirst {
+                it.id == participant.id
+            }
+            participantList[position] = participant
+        } else {
+            participantList.add(participant)
+        }
+
         updateInternalValues()
     }
 }

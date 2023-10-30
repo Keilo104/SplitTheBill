@@ -36,7 +36,11 @@ class ParticipantActivity : AppCompatActivity() {
                 val participant = Participant(
                     id = generateId(),
                     name = nameEt.text.toString(),
-                    amountSpent = amountSpentEt.text.toString().toDouble(),
+                    amountSpent =
+                    if(amountSpentEt.text.toString() != "")
+                        amountSpentEt.text.toString().toDouble()
+                    else
+                        0.0,
                     itemsBought = itemsBoughtEt.text.toString()
                 )
 

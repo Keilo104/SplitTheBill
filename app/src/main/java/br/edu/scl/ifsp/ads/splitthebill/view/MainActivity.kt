@@ -15,6 +15,7 @@ import br.edu.scl.ifsp.ads.splitthebill.R
 import br.edu.scl.ifsp.ads.splitthebill.adapter.ParticipantAdapter
 import br.edu.scl.ifsp.ads.splitthebill.databinding.ActivityMainBinding
 import br.edu.scl.ifsp.ads.splitthebill.model.Constant.EXTRA_PARTICIPANT
+import br.edu.scl.ifsp.ads.splitthebill.model.Constant.VIEW_PARTICIPANT
 import br.edu.scl.ifsp.ads.splitthebill.model.Participant
 import br.edu.scl.ifsp.ads.splitthebill.model.ParticipantListManager
 
@@ -61,6 +62,15 @@ class MainActivity : AppCompatActivity() {
                     participantAdapter.notifyDataSetChanged()
                 }
             }
+        }
+
+        amb.participantLv.setOnItemClickListener { parent, view, position, id ->
+            val participant = participantListManager.getParticipantAt(position)
+            val viewParticipantIntent = Intent(this, ParticipantActivity::class.java)
+                .putExtra(EXTRA_PARTICIPANT, participant)
+                .putExtra(VIEW_PARTICIPANT, true)
+
+            startActivity(viewParticipantIntent)
         }
 
         registerForContextMenu(amb.participantLv)

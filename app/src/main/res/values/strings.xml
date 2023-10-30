@@ -22,6 +22,7 @@
     <!-- Activity Participant strings -->
     <string name="participant_activity_title_add">Add a new participant!</string>
     <string name="participant_activity_title_edit">Edit this participant</string>
+    <string name="participant_activity_title_view">Participant details</string>
     <string name="participant_activity_subtitle">Participant details</string>
     <string name="participant_name_hint">Name</string>
     <string name="participant_amount_spent_hint">Amount spent</string>

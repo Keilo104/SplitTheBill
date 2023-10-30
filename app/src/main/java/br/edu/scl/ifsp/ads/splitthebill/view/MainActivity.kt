@@ -12,19 +12,22 @@ import br.edu.scl.ifsp.ads.splitthebill.R
 import br.edu.scl.ifsp.ads.splitthebill.databinding.ActivityMainBinding
 import br.edu.scl.ifsp.ads.splitthebill.model.Constant.EXTRA_PARTICIPANT
 import br.edu.scl.ifsp.ads.splitthebill.model.Participant
+import br.edu.scl.ifsp.ads.splitthebill.model.ParticipantListManager
 
 class MainActivity : AppCompatActivity() {
     private val amb: ActivityMainBinding by lazy {
         ActivityMainBinding.inflate(layoutInflater)
     }
 
-    private val participantList: MutableList<Participant> = mutableListOf()
+    private val participantListManager: ParticipantListManager by lazy {
+        ParticipantListManager()
+    }
 
     private val participantAdapter: ArrayAdapter<String> by lazy {
         ArrayAdapter(
             this,
             android.R.layout.simple_list_item_1,
-            participantList.map { _participant ->
+            participantListManager.participantList.map { _participant ->
                 _participant.name
             }
         )
@@ -38,6 +41,7 @@ class MainActivity : AppCompatActivity() {
 
         setSupportActionBar(amb.toolbarIn.toolbar)
         supportActionBar?.title = resources.getString(R.string.main_activity_toolbar_title)
+        updateTotalAmountSubtitle()
 
         amb.participantLv.adapter = participantAdapter
 
@@ -51,7 +55,8 @@ class MainActivity : AppCompatActivity() {
             if (result.resultCode == RESULT_OK) {
                 val participant = result.data?.getParcelableExtra<Participant>(EXTRA_PARTICIPANT)
                 participant?.let { _participant ->
-                    participantList.add(_participant)
+                    participantListManager.addNewParticipant(_participant)
+                    updateTotalAmountSubtitle()
                     participantAdapter.add(_participant.name)
                     participantAdapter.notifyDataSetChanged()
                 }
@@ -74,8 +79,16 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    private fun updateTotalAmountSubtitle() {
+        supportActionBar?.subtitle =
+            "${resources.getString(R.string.main_activity_toolbar_subtitle)} " +
+                    "${participantListManager.getTotalPurchaseAmount().format(2)} "
+    }
+
     private fun launchParticipantActivity() {
         carl.launch(Intent(this, ParticipantActivity::class.java))
     }
+
+    private fun Double.format(digits: Int) = "%.${digits}f".format(this)
 
 }

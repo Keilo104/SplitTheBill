@@ -2,7 +2,8 @@
     <!-- Base application theme. -->
     <style name="Base.Theme.SplitTheBill" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="colorPrimary">@color/primary_theme_color</item>
+        <item name="colorPrimaryVariant">@color/primary_variant_theme_color</item>
     </style>
 
     <style name="Theme.SplitTheBill" parent="Base.Theme.SplitTheBill" />

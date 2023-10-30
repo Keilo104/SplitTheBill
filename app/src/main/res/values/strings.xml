@@ -1,3 +1,23 @@
 <resources>
-    <string name="app_name">SplitTheBill</string>
+    <string name="app_name" translatable="false">SplitTheBill</string>
+
+    <!-- Activity Main strings -->
+    <string name="main_activity_toolbar_title" translatable="false">Split the Bill</string>
+    <string name="floating_action_button_description">Add new participant</string>
+    <string name="menu_item_add_participant">Add new participant</string>
+    <string name="menu_item_remove_participant">Delete this participant</string>
+    <string name="menu_item_edit_participant">Edit this participant</string>
+
+    <!-- Tile Participant strings -->
+    <string name="participant_name_placeholder">Placeholder Name</string>
+    <string name="participant_amount_spent">Spent: R$</string>
+    <string name="participant_amount_spent_value_placeholder">XX,XX</string>
+    <string name="participant_amount_outstanding">Outstanding: R$</string>
+    <string name="participant_amount_outstanding_value_placeholder">XX,XX</string>
+
+    <!-- Activity Participant strings -->
+    <string name="participant_name_hint">Name</string>
+    <string name="participant_amount_spent_hint">Amount spent</string>
+    <string name="participant_items_bought_hint">Items bought</string>
+    <string name="save">Save</string>
 </resources>

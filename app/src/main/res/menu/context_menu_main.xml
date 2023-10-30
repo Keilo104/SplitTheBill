@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/removeParticipantMi"
+        android:title="@string/menu_item_remove_participant"/>
+    <item
+        android:id="@+id/editParticipantMi"
+        android:title="@string/menu_item_edit_participant"/>
+
+</menu>

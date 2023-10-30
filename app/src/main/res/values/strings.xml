@@ -4,9 +4,10 @@
     <!-- Activity Main strings -->
     <string name="main_activity_toolbar_title" translatable="false">Split the Bill</string>
     <string name="main_activity_toolbar_subtitle" >Total Purchase Amount: R$</string>
-    <string name="floating_action_button_description">Add new participant</string>
-    <string name="menu_item_add_participant">Add new participant</string>
+    <string name="floating_action_button_description">Add a new participant</string>
+    <string name="menu_item_add_participant">Add a new participant</string>
     <string name="menu_item_remove_participant">Delete this participant</string>
+    <string name="toast_remove_participant">Participant removed!</string>
     <string name="menu_item_edit_participant">Edit this participant</string>
 
     <!-- Tile Participant strings -->
@@ -19,7 +20,8 @@
     <string name="participant_amount_outstanding_value_placeholder">XX,XX</string>
 
     <!-- Activity Participant strings -->
-    <string name="participant_activity_title_add">Add new participant!</string>
+    <string name="participant_activity_title_add">Add a new participant!</string>
+    <string name="participant_activity_title_edit">Edit this participant</string>
     <string name="participant_activity_subtitle">Participant details</string>
     <string name="participant_name_hint">Name</string>
     <string name="participant_amount_spent_hint">Amount spent</string>

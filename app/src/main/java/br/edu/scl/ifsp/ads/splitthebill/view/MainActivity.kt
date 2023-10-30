@@ -8,6 +8,7 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.AdapterView
+import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import br.edu.scl.ifsp.ads.splitthebill.R
@@ -92,9 +93,21 @@ class MainActivity : AppCompatActivity() {
         val position = (item.menuInfo as AdapterView.AdapterContextMenuInfo).position
         return when (item.itemId) {
             R.id.removeParticipantMi -> {
+                participantListManager.removeParticipantAt(position)
+                participantAdapter.notifyDataSetChanged()
+                updateTotalAmountSubtitle()
+                Toast.makeText(this,
+                    resources.getString(R.string.toast_remove_participant),
+                    Toast.LENGTH_SHORT
+                ).show()
                 true
             }
+
             R.id.editParticipantMi -> {
+                val participant = participantListManager.getParticipantAt(position)
+                val editParticipantIntent = Intent(this, ParticipantActivity::class.java)
+                editParticipantIntent.putExtra(EXTRA_PARTICIPANT, participant)
+                carl.launch(editParticipantIntent)
                 true
             }
             else -> true

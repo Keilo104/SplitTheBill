@@ -1,7 +1,7 @@
 package br.edu.scl.ifsp.ads.splitthebill.model
 
 class ParticipantListManager {
-    val participantList: MutableList<Participant> = mutableListOf()
+    public val participantList: MutableList<Participant> = mutableListOf()
     private var totalPurchaseAmount: Double = 0.0
     private var amountOwedPerPerson: Double = 0.0
 
@@ -23,6 +23,11 @@ class ParticipantListManager {
         amountOwedPerPerson = totalPurchaseAmount / participantList.count()
     }
 
+    fun removeParticipantAt(position: Int) {
+        participantList.removeAt(position)
+        updateInternalValues()
+    }
+
     fun addOrUpdateParticipant(participant: Participant) {
         if(participantList.any { it.id == participant.id }) {
             val position = participantList.indexOfFirst {
@@ -34,5 +39,9 @@ class ParticipantListManager {
         }
 
         updateInternalValues()
+    }
+
+    fun getParticipantAt(position: Int): Participant {
+        return participantList[position]
     }
 }

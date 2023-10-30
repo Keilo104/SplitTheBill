@@ -24,6 +24,7 @@ class ParticipantActivity : AppCompatActivity() {
 
         val receivedParticipant = intent.getParcelableExtra<Participant>(EXTRA_PARTICIPANT)
         receivedParticipant?.let { _receivedParticipant ->
+            supportActionBar?.title = resources.getString(R.string.participant_activity_title_edit)
             with(apb) {
                 nameEt.setText(_receivedParticipant.name)
                 amountSpentEt.setText(_receivedParticipant.amountSpent.toString())
@@ -34,7 +35,7 @@ class ParticipantActivity : AppCompatActivity() {
         with(apb) {
             saveBt.setOnClickListener {
                 val participant = Participant(
-                    id = generateId(),
+                    id = receivedParticipant?.id?:generateId(),
                     name = nameEt.text.toString(),
                     amountSpent =
                     if(amountSpentEt.text.toString() != "")

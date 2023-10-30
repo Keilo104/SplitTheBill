@@ -19,7 +19,7 @@ class ParticipantAdapter(
 ArrayAdapter<Participant>(context, R.layout.tile_participant, participantListManager.participantList) {
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
-        val participant = participantListManager.participantList[position]
+        val participant = participantListManager.getParticipantAt(position)
         var tpb: TileParticipantBinding? = null
 
         var participantTileView = convertView

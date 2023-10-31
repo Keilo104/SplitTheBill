@@ -1,7 +1,10 @@
 package br.edu.scl.ifsp.ads.splitthebill.model
 
-class ParticipantListManager {
-    public val participantList: MutableList<Participant> = mutableListOf()
+import br.edu.scl.ifsp.ads.splitthebill.controller.ParticipantController
+
+class ParticipantListManager(participantController: ParticipantController) {
+    private var participantController: ParticipantController = participantController
+    public var participantList: MutableList<Participant> = mutableListOf()
     private var totalPurchaseAmount: Double = 0.0
     private var amountOwedPerPerson: Double = 0.0
 
@@ -13,6 +16,12 @@ class ParticipantListManager {
         return amountOwedPerPerson
     }
 
+    fun syncParticipantList(): ParticipantListManager {
+        participantList = participantController.getParticipants()
+        updateInternalValues()
+        return this
+    }
+
     private fun updateInternalValues() {
         totalPurchaseAmount = 0.0
 
@@ -21,6 +30,7 @@ class ParticipantListManager {
         }
 
         amountOwedPerPerson = totalPurchaseAmount / participantList.count()
+        participantList.sortBy { it.name }
     }
 
     fun removeParticipantAt(position: Int) {
@@ -34,8 +44,17 @@ class ParticipantListManager {
                 it.id == participant.id
             }
             participantList[position] = participant
+            participantController.editParticipant(participant)
         } else {
-            participantList.add(participant)
+            val newId = participantController.insertParticipant(participant)
+            val newParticipant = Participant(
+                newId,
+                participant.name,
+                participant.amountSpent,
+                participant.itemsBought
+            )
+
+            participantList.add(newParticipant)
         }
 
         updateInternalValues()

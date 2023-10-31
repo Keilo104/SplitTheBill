@@ -7,9 +7,9 @@ import androidx.appcompat.app.AppCompatActivity
 import br.edu.scl.ifsp.ads.splitthebill.R
 import br.edu.scl.ifsp.ads.splitthebill.databinding.ActivityParticipantBinding
 import br.edu.scl.ifsp.ads.splitthebill.model.Constant.EXTRA_PARTICIPANT
+import br.edu.scl.ifsp.ads.splitthebill.model.Constant.INVALID_PARTICIPANT_ID
 import br.edu.scl.ifsp.ads.splitthebill.model.Constant.VIEW_PARTICIPANT
 import br.edu.scl.ifsp.ads.splitthebill.model.Participant
-import java.util.Random
 
 class ParticipantActivity : AppCompatActivity() {
     private val apb: ActivityParticipantBinding by lazy {
@@ -48,7 +48,7 @@ class ParticipantActivity : AppCompatActivity() {
         with(apb) {
             saveBt.setOnClickListener {
                 val participant = Participant(
-                    id = receivedParticipant?.id?:generateId(),
+                    id = receivedParticipant?.id?: INVALID_PARTICIPANT_ID,
                     name = nameEt.text.toString(),
 
                     amountSpent =
@@ -67,6 +67,4 @@ class ParticipantActivity : AppCompatActivity() {
             }
         }
     }
-
-    private fun generateId(): Int = Random(System.currentTimeMillis()).nextInt()
 }

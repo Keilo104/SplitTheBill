@@ -13,6 +13,7 @@ import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import br.edu.scl.ifsp.ads.splitthebill.R
 import br.edu.scl.ifsp.ads.splitthebill.adapter.ParticipantAdapter
+import br.edu.scl.ifsp.ads.splitthebill.controller.ParticipantController
 import br.edu.scl.ifsp.ads.splitthebill.databinding.ActivityMainBinding
 import br.edu.scl.ifsp.ads.splitthebill.model.Constant.EXTRA_PARTICIPANT
 import br.edu.scl.ifsp.ads.splitthebill.model.Constant.VIEW_PARTICIPANT
@@ -20,14 +21,18 @@ import br.edu.scl.ifsp.ads.splitthebill.model.Participant
 import br.edu.scl.ifsp.ads.splitthebill.model.ParticipantListManager
 
 class MainActivity : AppCompatActivity() {
+    // View Binding
     private val amb: ActivityMainBinding by lazy {
         ActivityMainBinding.inflate(layoutInflater)
     }
 
+    // Participant ListManager
     private val participantListManager: ParticipantListManager by lazy {
-        ParticipantListManager()
+        val participantListManager = ParticipantListManager(participantController)
+        participantListManager.syncParticipantList()
     }
 
+    // Adapter
     private val participantAdapter: ParticipantAdapter by lazy {
         ParticipantAdapter(
             this,
@@ -35,6 +40,12 @@ class MainActivity : AppCompatActivity() {
         )
     }
 
+    // Controller
+    private val participantController: ParticipantController by lazy {
+        ParticipantController(this)
+    }
+
+    // Activity Result Launcher
     private lateinit var carl: ActivityResultLauncher<Intent>
 
     override fun onCreate(savedInstanceState: Bundle?) {

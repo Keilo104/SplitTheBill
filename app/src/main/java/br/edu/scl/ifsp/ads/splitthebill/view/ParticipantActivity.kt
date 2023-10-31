@@ -75,7 +75,5 @@ class ParticipantActivity : AppCompatActivity() {
                 finish()
             }
         }
-
-
     }
 }

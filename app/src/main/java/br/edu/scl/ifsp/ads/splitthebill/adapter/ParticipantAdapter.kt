@@ -56,7 +56,7 @@ ArrayAdapter<Participant>(context, R.layout.tile_participant, participantListMan
             holder.amountOutstandingValueTv.setTextColor(hexGreen)
             tpb?.amountOutstandingValueTv?.setTextColor(hexGreen)
 
-        } else if (amountOwed.format(2) == "0.00") {
+        } else if (amountOwed.format(2).equals("0.00")) {
             holder.amountOutstandingTv.text = context.resources.getString(R.string.participant_amount_neutral)
             tpb?.amountOutstandingTv?.text = context.resources.getString(R.string.participant_amount_neutral)
 

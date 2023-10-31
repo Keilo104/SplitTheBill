@@ -30,4 +30,5 @@
     <string name="participant_items_bought_hint">Items bought</string>
     <string name="participant_activity_save">Save!</string>
     <string name="participant_activity_cancel">Cancel</string>
+    <string name="participant_activity_return">Return</string>
 </resources>

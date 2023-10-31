@@ -40,6 +40,10 @@ class ParticipantActivity : AppCompatActivity() {
                     amountSpentEt.isEnabled = false
                     itemsBoughtEt.isEnabled = false
                     saveBt.visibility = View.GONE
+
+                    val hexPrimary = resources.getColor(R.color.primary_theme_color)
+                    cancelBt.setBackgroundColor(hexPrimary)
+                    cancelBt.text = resources.getString(R.string.participant_activity_return)
                 }
 
                 nameEt.setText(_receivedParticipant.name)

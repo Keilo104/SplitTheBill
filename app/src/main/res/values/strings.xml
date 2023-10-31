@@ -28,5 +28,6 @@
     <string name="participant_name_hint">Name</string>
     <string name="participant_amount_spent_hint">Amount spent</string>
     <string name="participant_items_bought_hint">Items bought</string>
-    <string name="save">Save!</string>
+    <string name="participant_activity_save">Save!</string>
+    <string name="participant_activity_cancel">Cancel</string>
 </resources>

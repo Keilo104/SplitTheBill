@@ -68,6 +68,14 @@ class ParticipantActivity : AppCompatActivity() {
                 setResult(RESULT_OK, resultIntent)
                 finish()
             }
+
+            cancelBt.setOnClickListener {
+                val resultIntent = Intent()
+                setResult(RESULT_CANCELED, resultIntent)
+                finish()
+            }
         }
+
+
     }
 }

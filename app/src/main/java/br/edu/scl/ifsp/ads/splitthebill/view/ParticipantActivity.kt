@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import br.edu.scl.ifsp.ads.splitthebill.R
+import br.edu.scl.ifsp.ads.splitthebill.util.MoneyTextWatcher
 import br.edu.scl.ifsp.ads.splitthebill.databinding.ActivityParticipantBinding
 import br.edu.scl.ifsp.ads.splitthebill.model.Constant.EXTRA_PARTICIPANT
 import br.edu.scl.ifsp.ads.splitthebill.model.Constant.INVALID_PARTICIPANT_ID
@@ -23,6 +24,8 @@ class ParticipantActivity : AppCompatActivity() {
         setSupportActionBar(apb.toolbarIn.toolbar)
         supportActionBar?.title = resources.getString(R.string.participant_activity_title_add)
         supportActionBar?.subtitle = resources.getString(R.string.participant_activity_subtitle)
+
+        apb.amountSpentEt.addTextChangedListener(MoneyTextWatcher(apb.amountSpentEt))
 
         val receivedParticipant = intent.getParcelableExtra<Participant>(EXTRA_PARTICIPANT)
         receivedParticipant?.let { _receivedParticipant ->

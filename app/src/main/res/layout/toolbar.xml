@@ -6,6 +6,6 @@
     android:layout_height="?attr/actionBarSize"
     app:titleTextColor="@color/black"
     app:subtitleTextColor="@color/black"
-    android:background="@color/primary_variant_theme_color">
+    android:background="?attr/colorPrimaryVariant">
 
 </androidx.appcompat.widget.Toolbar>

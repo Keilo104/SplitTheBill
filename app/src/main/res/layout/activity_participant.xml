@@ -23,6 +23,7 @@
         android:ems="10"
         android:inputType="textPersonName"
         android:hint="@string/participant_name_hint"
+        android:importantForAutofill="no"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/toolbarIn" />
@@ -34,6 +35,7 @@
         android:ems="10"
         android:inputType="numberDecimal"
         android:hint="@string/participant_amount_spent_hint"
+        android:importantForAutofill="no"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/nameEt" />
@@ -47,6 +49,7 @@
         android:lines="8"
         android:gravity="top"
         android:hint="@string/participant_items_bought_hint"
+        android:importantForAutofill="no"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/amountSpentEt" />

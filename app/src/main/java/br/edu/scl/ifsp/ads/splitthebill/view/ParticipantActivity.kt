@@ -43,7 +43,7 @@ class ParticipantActivity : AppCompatActivity() {
                 }
 
                 nameEt.setText(_receivedParticipant.name)
-                amountSpentEt.setText(_receivedParticipant.amountSpent.toString())
+                amountSpentEt.setText(_receivedParticipant.amountSpent.format(2))
                 itemsBoughtEt.setText(_receivedParticipant.itemsBought)
             }
         }
@@ -76,4 +76,6 @@ class ParticipantActivity : AppCompatActivity() {
             }
         }
     }
+
+    private fun Double.format(digits: Int) = "%.${digits}f".format(this)
 }

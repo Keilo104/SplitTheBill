@@ -43,7 +43,7 @@ ArrayAdapter<Participant>(context, R.layout.tile_participant, participantControl
         }
 
         val holder = participantTileView.tag as TileParticipantHolder
-        val amountOwed = participantController.getAmountOwedPerPerson() - participant.amountSpent
+        val amountOwed = participantController.getAmountOwedPerPerson() - participant.totalAmountSpent
         val absAmountOwed = abs(amountOwed)
 
         if (amountOwed < 0) {
@@ -78,11 +78,11 @@ ArrayAdapter<Participant>(context, R.layout.tile_participant, participantControl
         }
 
         holder.nameTv.text = participant.name
-        holder.amountSpentValueTv.text = participant.amountSpent.format(2)
+        holder.amountSpentValueTv.text = participant.totalAmountSpent.format(2)
         holder.amountOutstandingValueTv.text = absAmountOwed.format(2)
 
         tpb?.nameTv?.text = participant.name
-        tpb?.amountSpentValueTv?.text = participant.amountSpent.format(2)
+        tpb?.amountSpentValueTv?.text = participant.totalAmountSpent.format(2)
         tpb?.amountOutstandingValueTv?.text = absAmountOwed.format(2)
 
         return participantTileView

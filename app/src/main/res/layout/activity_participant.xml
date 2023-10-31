@@ -29,7 +29,20 @@
         app:layout_constraintTop_toBottomOf="@id/toolbarIn" />
 
     <EditText
-        android:id="@+id/amountSpentEt"
+        android:id="@+id/itemBought1Et"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="text"
+        android:gravity="top"
+        android:hint="@string/participant_item_bought_1_hint"
+        android:importantForAutofill="no"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/nameEt" />
+
+    <EditText
+        android:id="@+id/amountSpent1Et"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -38,21 +51,57 @@
         android:importantForAutofill="no"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/nameEt" />
+        app:layout_constraintTop_toBottomOf="@id/itemBought1Et" />
 
     <EditText
-        android:id="@+id/itemsBoughtEt"
+        android:id="@+id/itemBought2Et"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:inputType="textMultiLine"
-        android:lines="8"
+        android:inputType="text"
         android:gravity="top"
-        android:hint="@string/participant_items_bought_hint"
+        android:hint="@string/participant_item_bought_2_hint"
         android:importantForAutofill="no"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/amountSpentEt" />
+        app:layout_constraintTop_toBottomOf="@id/amountSpent1Et" />
+
+    <EditText
+        android:id="@+id/amountSpent2Et"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="numberDecimal"
+        android:hint="@string/participant_amount_spent_hint"
+        android:importantForAutofill="no"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/itemBought2Et" />
+
+    <EditText
+        android:id="@+id/itemBought3Et"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="text"
+        android:gravity="top"
+        android:hint="@string/participant_item_bought_3_hint"
+        android:importantForAutofill="no"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/amountSpent2Et" />
+
+    <EditText
+        android:id="@+id/amountSpent3Et"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="numberDecimal"
+        android:hint="@string/participant_amount_spent_hint"
+        android:importantForAutofill="no"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/itemBought3Et" />
 
     <Button
         android:id="@+id/saveBt"

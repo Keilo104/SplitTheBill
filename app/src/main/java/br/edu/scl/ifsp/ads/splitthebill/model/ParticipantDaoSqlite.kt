@@ -15,14 +15,24 @@ class ParticipantDaoSqlite(context: Context) : ParticipantDao {
         private const val PARTICIPANT_TABLE = "participant"
         private const val ID_COLUMN = "id"
         private const val NAME_COLUMN = "name"
-        private const val AMOUNT_SPENT_COLUMN = "amount_spent"
-        private const val ITEMS_BOUGHT_COLUMN = "items_bought"
+        private const val ITEM_BOUGHT_1_COLUMN = "item_bought_1"
+        private const val AMOUNT_SPENT_1_COLUMN = "amount_spent_1"
+        private const val ITEM_BOUGHT_2_COLUMN = "item_bought_2"
+        private const val AMOUNT_SPENT_2_COLUMN = "amount_spent_2"
+        private const val ITEM_BOUGHT_3_COLUMN = "item_bought_3"
+        private const val AMOUNT_SPENT_3_COLUMN = "amount_spent_3"
+        private const val TOTAL_AMOUNT_SPENT_COLUMN = "total_amount_spent"
         private const val CREATE_PARTICIPANT_TABLE_STATEMENT =
             "CREATE TABLE IF NOT EXISTS $PARTICIPANT_TABLE (" +
                     "$ID_COLUMN INTEGER PRIMARY KEY AUTOINCREMENT, " +
                     "$NAME_COLUMN TEXT NOT NULL, " +
-                    "$AMOUNT_SPENT_COLUMN REAL NOT NULL, " +
-                    "$ITEMS_BOUGHT_COLUMN TEXT NOT NULL" +
+                    "$ITEM_BOUGHT_1_COLUMN TEXT NOT NULL," +
+                    "$AMOUNT_SPENT_1_COLUMN REAL NOT NULL, " +
+                    "$ITEM_BOUGHT_2_COLUMN TEXT NOT NULL," +
+                    "$AMOUNT_SPENT_2_COLUMN REAL NOT NULL, " +
+                    "$ITEM_BOUGHT_3_COLUMN TEXT NOT NULL," +
+                    "$AMOUNT_SPENT_3_COLUMN REAL NOT NULL, " +
+                    "$TOTAL_AMOUNT_SPENT_COLUMN REAL NOT NULL " +
                     ");"
     }
 
@@ -89,14 +99,24 @@ class ParticipantDaoSqlite(context: Context) : ParticipantDao {
     private fun Cursor.rowToParticipant(): Participant = Participant(
         getInt(getColumnIndexOrThrow(ID_COLUMN)),
         getString(getColumnIndexOrThrow(NAME_COLUMN)),
-        getDouble(getColumnIndexOrThrow(AMOUNT_SPENT_COLUMN)),
-        getString(getColumnIndexOrThrow(ITEMS_BOUGHT_COLUMN))
+        getString(getColumnIndexOrThrow(ITEM_BOUGHT_1_COLUMN)),
+        getDouble(getColumnIndexOrThrow(AMOUNT_SPENT_1_COLUMN)),
+        getString(getColumnIndexOrThrow(ITEM_BOUGHT_2_COLUMN)),
+        getDouble(getColumnIndexOrThrow(AMOUNT_SPENT_2_COLUMN)),
+        getString(getColumnIndexOrThrow(ITEM_BOUGHT_3_COLUMN)),
+        getDouble(getColumnIndexOrThrow(AMOUNT_SPENT_3_COLUMN)),
+        getDouble(getColumnIndexOrThrow(TOTAL_AMOUNT_SPENT_COLUMN))
     )
 
     private fun Participant.toContentValues(): ContentValues = with(ContentValues()) {
         put(NAME_COLUMN, name)
-        put(AMOUNT_SPENT_COLUMN, amountSpent)
-        put(ITEMS_BOUGHT_COLUMN, itemsBought)
+        put(ITEM_BOUGHT_1_COLUMN, itemBought1)
+        put(AMOUNT_SPENT_1_COLUMN, amountSpent1)
+        put(ITEM_BOUGHT_2_COLUMN, itemBought2)
+        put(AMOUNT_SPENT_2_COLUMN, amountSpent2)
+        put(ITEM_BOUGHT_3_COLUMN, itemBought3)
+        put(AMOUNT_SPENT_3_COLUMN, amountSpent3)
+        put(TOTAL_AMOUNT_SPENT_COLUMN, totalAmountSpent)
         this
     }
 }

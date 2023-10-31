@@ -25,7 +25,9 @@ class ParticipantActivity : AppCompatActivity() {
         supportActionBar?.title = resources.getString(R.string.participant_activity_title_add)
         supportActionBar?.subtitle = resources.getString(R.string.participant_activity_subtitle)
 
-        apb.amountSpentEt.addTextChangedListener(MoneyTextWatcher(apb.amountSpentEt))
+        apb.amountSpent1Et.addTextChangedListener(MoneyTextWatcher(apb.amountSpent1Et))
+        apb.amountSpent2Et.addTextChangedListener(MoneyTextWatcher(apb.amountSpent2Et))
+        apb.amountSpent3Et.addTextChangedListener(MoneyTextWatcher(apb.amountSpent3Et))
 
         val receivedParticipant = intent.getParcelableExtra<Participant>(EXTRA_PARTICIPANT)
         receivedParticipant?.let { _receivedParticipant ->
@@ -37,8 +39,12 @@ class ParticipantActivity : AppCompatActivity() {
                     supportActionBar?.title = resources.getString(R.string.participant_activity_title_view)
                     supportActionBar?.subtitle = ""
                     nameEt.isEnabled = false
-                    amountSpentEt.isEnabled = false
-                    itemsBoughtEt.isEnabled = false
+                    itemBought1Et.isEnabled = false
+                    amountSpent1Et.isEnabled = false
+                    itemBought2Et.isEnabled = false
+                    amountSpent2Et.isEnabled = false
+                    itemBought3Et.isEnabled = false
+                    amountSpent3Et.isEnabled = false
                     saveBt.visibility = View.GONE
 
                     val hexPrimary = resources.getColor(R.color.primary_theme_color)
@@ -47,24 +53,46 @@ class ParticipantActivity : AppCompatActivity() {
                 }
 
                 nameEt.setText(_receivedParticipant.name)
-                amountSpentEt.setText(_receivedParticipant.amountSpent.format(2))
-                itemsBoughtEt.setText(_receivedParticipant.itemsBought)
+                itemBought1Et.setText(_receivedParticipant.itemBought1)
+                amountSpent1Et.setText(_receivedParticipant.amountSpent1.format(2))
+                itemBought2Et.setText(_receivedParticipant.itemBought2)
+                amountSpent2Et.setText(_receivedParticipant.amountSpent2.format(2))
+                itemBought3Et.setText(_receivedParticipant.itemBought3)
+                amountSpent3Et.setText(_receivedParticipant.amountSpent3.format(2))
             }
         }
 
         with(apb) {
             saveBt.setOnClickListener {
+                var amountSpent1 = 0.0
+                var amountSpent2 = 0.0
+                var amountSpent3 = 0.0
+
+                if (itemBought1Et.text.toString().isNotEmpty() &&
+                    amountSpent1Et.text.toString().isNotEmpty()) {
+                    amountSpent1 = amountSpent1Et.text.toString().toDouble()
+                }
+
+                if (itemBought2Et.text.toString().isNotEmpty() &&
+                    amountSpent2Et.text.toString().isNotEmpty()) {
+                    amountSpent2 = amountSpent2Et.text.toString().toDouble()
+                }
+
+                if (itemBought3Et.text.toString().isNotEmpty() &&
+                    amountSpent3Et.text.toString().isNotEmpty()) {
+                    amountSpent3 = amountSpent3Et.text.toString().toDouble()
+                }
+
                 val participant = Participant(
                     id = receivedParticipant?.id?: INVALID_PARTICIPANT_ID,
                     name = nameEt.text.toString(),
-
-                    amountSpent =
-                    if(amountSpentEt.text.toString() != "")
-                        amountSpentEt.text.toString().toDouble()
-                    else
-                        0.0,
-
-                    itemsBought = itemsBoughtEt.text.toString()
+                    itemBought1 = itemBought1Et.text.toString(),
+                    amountSpent1 = amountSpent1,
+                    itemBought2 = itemBought2Et.text.toString(),
+                    amountSpent2 = amountSpent2,
+                    itemBought3 = itemBought3Et.text.toString(),
+                    amountSpent3 = amountSpent3,
+                    totalAmountSpent = amountSpent1 + amountSpent2 + amountSpent3,
                 )
 
                 val resultIntent = Intent()

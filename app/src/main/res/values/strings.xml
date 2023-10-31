@@ -27,7 +27,9 @@
     <string name="participant_activity_subtitle">Participant details</string>
     <string name="participant_name_hint">Name</string>
     <string name="participant_amount_spent_hint">Amount spent</string>
-    <string name="participant_items_bought_hint">Items bought</string>
+    <string name="participant_item_bought_1_hint">1st item bought</string>
+    <string name="participant_item_bought_2_hint">2nd item bought</string>
+    <string name="participant_item_bought_3_hint">3rd item bought</string>
     <string name="participant_activity_save">Save!</string>
     <string name="participant_activity_cancel">Cancel</string>
     <string name="participant_activity_return">Return</string>

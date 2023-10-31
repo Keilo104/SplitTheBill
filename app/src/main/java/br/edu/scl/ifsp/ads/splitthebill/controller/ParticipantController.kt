@@ -63,8 +63,13 @@ class ParticipantController(mainActivity: MainActivity) {
             val newParticipant = Participant(
                 newId,
                 participant.name,
-                participant.amountSpent,
-                participant.itemsBought
+                participant.itemBought1,
+                participant.amountSpent1,
+                participant.itemBought2,
+                participant.amountSpent2,
+                participant.itemBought3,
+                participant.amountSpent3,
+                participant.totalAmountSpent
             )
 
             participantList.add(newParticipant)
@@ -81,7 +86,7 @@ class ParticipantController(mainActivity: MainActivity) {
         totalPurchaseAmount = 0.0
 
         for (participant in participantList) {
-            totalPurchaseAmount += participant.amountSpent
+            totalPurchaseAmount += participant.totalAmountSpent
         }
 
         amountOwedPerPerson = totalPurchaseAmount / participantList.count()

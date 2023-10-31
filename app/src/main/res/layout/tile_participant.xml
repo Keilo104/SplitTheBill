@@ -22,9 +22,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/participant_amount_spent"
-        app:layout_constraintTop_toBottomOf="@id/nameTv"
         app:layout_constraintStart_toStartOf="parent"
-        />
+        app:layout_constraintTop_toBottomOf="@+id/itemsBoughtTv" />
 
     <TextView
         android:id="@+id/amountSpentValueTv"
@@ -32,9 +31,8 @@
         android:layout_height="wrap_content"
         android:paddingHorizontal="2dp"
         android:text="@string/participant_amount_spent_value_placeholder"
-        app:layout_constraintTop_toBottomOf="@id/nameTv"
         app:layout_constraintStart_toEndOf="@id/amountSpentTv"
-        />
+        app:layout_constraintTop_toBottomOf="@+id/itemsBoughtTv" />
 
     <TextView
         android:id="@+id/amountOutstandingTv"
@@ -42,8 +40,7 @@
         android:layout_height="wrap_content"
         android:text="@string/participant_amount_outstanding_placeholder"
         app:layout_constraintEnd_toStartOf="@id/amountOutstandingValueTv"
-        app:layout_constraintTop_toBottomOf="@id/nameTv"
-        />
+        app:layout_constraintTop_toBottomOf="@+id/itemsBoughtTv" />
 
     <TextView
         android:id="@+id/amountOutstandingValueTv"
@@ -51,8 +48,24 @@
         android:layout_height="wrap_content"
         android:paddingHorizontal="2dp"
         android:text="@string/participant_amount_outstanding_value_placeholder"
-        app:layout_constraintTop_toBottomOf="@id/nameTv"
         app:layout_constraintEnd_toEndOf="parent"
-        />
+        app:layout_constraintTop_toBottomOf="@+id/itemsBoughtTv" />
+
+    <TextView
+        android:id="@+id/itemsBoughtTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/participant_items_bought"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/nameTv" />
+
+    <TextView
+        android:id="@+id/itemsBoughtValueTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="2dp"
+        android:text="@string/participant_items_bought_value_placeholder"
+        app:layout_constraintStart_toEndOf="@id/itemsBoughtTv"
+        app:layout_constraintTop_toBottomOf="@+id/nameTv" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

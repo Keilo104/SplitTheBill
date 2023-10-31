@@ -19,6 +19,8 @@
     <string name="participant_amount_to_receive">To receive: R$</string>
     <string name="participant_amount_to_pay">To pay: R$</string>
     <string name="participant_amount_outstanding_value_placeholder">XX,XX</string>
+    <string name="participant_items_bought">Items bought:</string>
+    <string name="participant_items_bought_value_placeholder">item1, item2, item3</string>
 
     <!-- Activity Participant strings -->
     <string name="participant_activity_title_add">Add a new participant!</string>

@@ -37,10 +37,27 @@ ArrayAdapter<Participant>(context, R.layout.tile_participant, participantControl
                 tpb.amountSpentValueTv,
                 tpb.amountOutstandingTv,
                 tpb.amountOutstandingValueTv,
+                tpb.itemsBoughtValueTv,
                 )
 
             participantTileView.tag = tileParticipantHolder
         }
+
+        var itemsBought = ""
+
+        if (participant.itemBought1.isNotEmpty()) {
+            itemsBought += "${participant.itemBought1}, "
+        }
+
+        if (participant.itemBought2.isNotEmpty()) {
+            itemsBought += "${participant.itemBought2}, "
+        }
+
+        if (participant.itemBought3.isNotEmpty()) {
+            itemsBought += "${participant.itemBought3}, "
+        }
+
+        itemsBought = itemsBought.dropLast(2)
 
         val holder = participantTileView.tag as TileParticipantHolder
         val amountOwed = participantController.getAmountOwedPerPerson() - participant.totalAmountSpent
@@ -80,10 +97,12 @@ ArrayAdapter<Participant>(context, R.layout.tile_participant, participantControl
         holder.nameTv.text = participant.name
         holder.amountSpentValueTv.text = participant.totalAmountSpent.format(2)
         holder.amountOutstandingValueTv.text = absAmountOwed.format(2)
+        holder.itemsBoughtValueTv.text = itemsBought
 
         tpb?.nameTv?.text = participant.name
         tpb?.amountSpentValueTv?.text = participant.totalAmountSpent.format(2)
         tpb?.amountOutstandingValueTv?.text = absAmountOwed.format(2)
+        tpb?.itemsBoughtValueTv?.text = itemsBought
 
         return participantTileView
     }
@@ -92,7 +111,8 @@ ArrayAdapter<Participant>(context, R.layout.tile_participant, participantControl
         val nameTv: TextView,
         val amountSpentValueTv: TextView,
         val amountOutstandingTv: TextView,
-        val amountOutstandingValueTv: TextView
+        val amountOutstandingValueTv: TextView,
+        val itemsBoughtValueTv: TextView
     )
 
     private fun Double.format(digits: Int) = "%.${digits}f".format(this)

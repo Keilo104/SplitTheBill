@@ -16,7 +16,7 @@ import kotlin.math.abs
 class ParticipantAdapter(
     context: Context,
     private val participantController: ParticipantController):
-ArrayAdapter<Participant>(context, R.layout.tile_participant, participantController.participantList) {
+ArrayAdapter<Participant>(context, R.layout.tile_participant, participantController.getParticipantList()) {
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
         val participant = participantController.getParticipantAt(position)

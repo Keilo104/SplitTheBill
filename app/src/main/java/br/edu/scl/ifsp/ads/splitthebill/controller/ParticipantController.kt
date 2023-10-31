@@ -7,7 +7,7 @@ import br.edu.scl.ifsp.ads.splitthebill.view.MainActivity
 
 class ParticipantController(mainActivity: MainActivity) {
     private val participantDaoImpl: ParticipantDao = ParticipantDaoSqlite(mainActivity)
-    public var participantList: MutableList<Participant> = mutableListOf()
+    private var participantList: MutableList<Participant> = mutableListOf()
     private var totalPurchaseAmount: Double = 0.0
     private var amountOwedPerPerson: Double = 0.0
 
@@ -17,6 +17,10 @@ class ParticipantController(mainActivity: MainActivity) {
 
     fun getAmountOwedPerPerson(): Double {
         return amountOwedPerPerson
+    }
+
+    fun getParticipantList(): MutableList<Participant> {
+        return participantList
     }
 
     fun insertParticipant(participant: Participant): Int {
@@ -67,6 +71,10 @@ class ParticipantController(mainActivity: MainActivity) {
         }
     }
 
+    fun getParticipantAt(position: Int): Participant {
+        return participantList[position]
+    }
+
     private fun updateInternalValues() {
         totalPurchaseAmount = 0.0
 
@@ -76,9 +84,5 @@ class ParticipantController(mainActivity: MainActivity) {
 
         amountOwedPerPerson = totalPurchaseAmount / participantList.count()
         participantList.sortBy { it.name }
-    }
-
-    fun getParticipantAt(position: Int): Participant {
-        return participantList[position]
     }
 }

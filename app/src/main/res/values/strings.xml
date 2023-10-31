@@ -13,8 +13,8 @@
     <!-- Tile Participant strings -->
     <string name="participant_name_placeholder">Placeholder Name</string>
     <string name="participant_amount_spent">Spent: R$</string>
-    <string name="participant_amount_spent_value_placeholder">XX,XX</string>
     <string name="participant_amount_outstanding_placeholder">Outstanding: R$</string>
+    <string name="participant_amount_spent_value_placeholder">XX,XX</string>
     <string name="participant_amount_neutral">Balance neutral: R$</string>
     <string name="participant_amount_to_receive">To receive: R$</string>
     <string name="participant_amount_to_pay">To pay: R$</string>

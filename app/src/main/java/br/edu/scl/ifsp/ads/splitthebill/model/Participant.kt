@@ -9,6 +9,4 @@ data class Participant(
     var name: String,
     var amountSpent: Double,
     var itemsBought: String,
-) : Parcelable {
-
-}
+) : Parcelable

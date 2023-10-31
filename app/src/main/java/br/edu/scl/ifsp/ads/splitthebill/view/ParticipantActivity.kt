@@ -66,7 +66,6 @@ class ParticipantActivity : AppCompatActivity() {
                 finish()
             }
         }
-
     }
 
     private fun generateId(): Int = Random(System.currentTimeMillis()).nextInt()

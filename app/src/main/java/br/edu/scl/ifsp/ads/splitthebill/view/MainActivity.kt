@@ -18,7 +18,6 @@ import br.edu.scl.ifsp.ads.splitthebill.databinding.ActivityMainBinding
 import br.edu.scl.ifsp.ads.splitthebill.model.Constant.EXTRA_PARTICIPANT
 import br.edu.scl.ifsp.ads.splitthebill.model.Constant.VIEW_PARTICIPANT
 import br.edu.scl.ifsp.ads.splitthebill.model.Participant
-import br.edu.scl.ifsp.ads.splitthebill.model.ParticipantListManager
 
 class MainActivity : AppCompatActivity() {
     // View Binding
@@ -26,23 +25,18 @@ class MainActivity : AppCompatActivity() {
         ActivityMainBinding.inflate(layoutInflater)
     }
 
-    // Participant ListManager
-    private val participantListManager: ParticipantListManager by lazy {
-        val participantListManager = ParticipantListManager(participantController)
-        participantListManager.syncParticipantList()
-    }
-
     // Adapter
     private val participantAdapter: ParticipantAdapter by lazy {
         ParticipantAdapter(
             this,
-            participantListManager
+            participantController
         )
     }
 
     // Controller
     private val participantController: ParticipantController by lazy {
-        ParticipantController(this)
+        val participantController = ParticipantController(this)
+        participantController.syncParticipantList()
     }
 
     // Activity Result Launcher
@@ -68,7 +62,7 @@ class MainActivity : AppCompatActivity() {
             if (result.resultCode == RESULT_OK) {
                 val participant = result.data?.getParcelableExtra<Participant>(EXTRA_PARTICIPANT)
                 participant?.let { _participant ->
-                    participantListManager.addOrUpdateParticipant(_participant)
+                    participantController.addOrEditParticipant(_participant)
                     updateTotalAmountSubtitle()
                     participantAdapter.notifyDataSetChanged()
                 }
@@ -76,7 +70,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         amb.participantLv.setOnItemClickListener { parent, view, position, id ->
-            val participant = participantListManager.getParticipantAt(position)
+            val participant = participantController.getParticipantAt(position)
             val viewParticipantIntent = Intent(this, ParticipantActivity::class.java)
                 .putExtra(EXTRA_PARTICIPANT, participant)
                 .putExtra(VIEW_PARTICIPANT, true)
@@ -112,9 +106,10 @@ class MainActivity : AppCompatActivity() {
 
     override fun onContextItemSelected(item: MenuItem): Boolean {
         val position = (item.menuInfo as AdapterView.AdapterContextMenuInfo).position
+
         return when (item.itemId) {
             R.id.removeParticipantMi -> {
-                participantListManager.removeParticipantAt(position)
+                participantController.removeParticipant(position)
                 participantAdapter.notifyDataSetChanged()
                 updateTotalAmountSubtitle()
                 Toast.makeText(this,
@@ -125,7 +120,7 @@ class MainActivity : AppCompatActivity() {
             }
 
             R.id.editParticipantMi -> {
-                val participant = participantListManager.getParticipantAt(position)
+                val participant = participantController.getParticipantAt(position)
                 val editParticipantIntent = Intent(this, ParticipantActivity::class.java)
                 editParticipantIntent.putExtra(EXTRA_PARTICIPANT, participant)
                 carl.launch(editParticipantIntent)
@@ -143,7 +138,7 @@ class MainActivity : AppCompatActivity() {
     private fun updateTotalAmountSubtitle() {
         supportActionBar?.subtitle =
             "${resources.getString(R.string.main_activity_toolbar_subtitle)} " +
-                    "${participantListManager.getTotalPurchaseAmount().format(2)} "
+                    "${participantController.getTotalPurchaseAmount().format(2)} "
     }
 
     private fun launchParticipantActivity() {

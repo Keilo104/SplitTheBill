@@ -8,18 +8,18 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.TextView
 import br.edu.scl.ifsp.ads.splitthebill.R
+import br.edu.scl.ifsp.ads.splitthebill.controller.ParticipantController
 import br.edu.scl.ifsp.ads.splitthebill.databinding.TileParticipantBinding
 import br.edu.scl.ifsp.ads.splitthebill.model.Participant
-import br.edu.scl.ifsp.ads.splitthebill.model.ParticipantListManager
 import kotlin.math.abs
 
 class ParticipantAdapter(
     context: Context,
-    private val participantListManager: ParticipantListManager):
-ArrayAdapter<Participant>(context, R.layout.tile_participant, participantListManager.participantList) {
+    private val participantController: ParticipantController):
+ArrayAdapter<Participant>(context, R.layout.tile_participant, participantController.participantList) {
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
-        val participant = participantListManager.getParticipantAt(position)
+        val participant = participantController.getParticipantAt(position)
         var tpb: TileParticipantBinding? = null
 
         var participantTileView = convertView
@@ -43,7 +43,7 @@ ArrayAdapter<Participant>(context, R.layout.tile_participant, participantListMan
         }
 
         val holder = participantTileView.tag as TileParticipantHolder
-        val amountOwed = participantListManager.getAmountOwedPerPerson() - participant.amountSpent
+        val amountOwed = participantController.getAmountOwedPerPerson() - participant.amountSpent
         val absAmountOwed = abs(amountOwed)
 
         if (amountOwed < 0) {

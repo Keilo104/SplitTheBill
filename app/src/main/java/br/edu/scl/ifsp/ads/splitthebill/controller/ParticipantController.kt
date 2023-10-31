@@ -7,14 +7,78 @@ import br.edu.scl.ifsp.ads.splitthebill.view.MainActivity
 
 class ParticipantController(mainActivity: MainActivity) {
     private val participantDaoImpl: ParticipantDao = ParticipantDaoSqlite(mainActivity)
+    public var participantList: MutableList<Participant> = mutableListOf()
+    private var totalPurchaseAmount: Double = 0.0
+    private var amountOwedPerPerson: Double = 0.0
 
-    fun insertParticipant(participant: Participant): Int = participantDaoImpl.createParticipant(participant)
+    fun getTotalPurchaseAmount(): Double {
+        return totalPurchaseAmount
+    }
+
+    fun getAmountOwedPerPerson(): Double {
+        return amountOwedPerPerson
+    }
+
+    fun insertParticipant(participant: Participant): Int {
+        val result = participantDaoImpl.createParticipant(participant)
+        updateInternalValues()
+
+        return result
+    }
 
     fun getParticipant(id: Int) = participantDaoImpl.retrieveParticipant(id)
 
-    fun getParticipants() = participantDaoImpl.retrieveParticipants()
+    fun syncParticipantList(): ParticipantController {
+        participantList = participantDaoImpl.retrieveParticipants()
+        updateInternalValues()
+        return this
+    }
 
-    fun editParticipant(participant: Participant) = participantDaoImpl.updateParticipant(participant)
+    fun editParticipant(participant: Participant){
+        participantDaoImpl.updateParticipant(participant)
+        updateInternalValues()
+    }
 
-    fun removeParticipant(id: Int) = participantDaoImpl.deleteParticipant(id)
+    fun removeParticipant(position: Int) {
+        val participant = getParticipantAt(position)
+        participantDaoImpl.deleteParticipant(participant.id)
+        participantList.removeAt(position)
+        updateInternalValues()
+    }
+
+    fun addOrEditParticipant(participant: Participant) {
+        if(participantList.any { it.id == participant.id }) {
+            val position = participantList.indexOfFirst {
+                it.id == participant.id
+            }
+            participantList[position] = participant
+            editParticipant(participant)
+
+        } else {
+            val newId = insertParticipant(participant)
+            val newParticipant = Participant(
+                newId,
+                participant.name,
+                participant.amountSpent,
+                participant.itemsBought
+            )
+
+            participantList.add(newParticipant)
+        }
+    }
+
+    private fun updateInternalValues() {
+        totalPurchaseAmount = 0.0
+
+        for (participant in participantList) {
+            totalPurchaseAmount += participant.amountSpent
+        }
+
+        amountOwedPerPerson = totalPurchaseAmount / participantList.count()
+        participantList.sortBy { it.name }
+    }
+
+    fun getParticipantAt(position: Int): Participant {
+        return participantList[position]
+    }
 }

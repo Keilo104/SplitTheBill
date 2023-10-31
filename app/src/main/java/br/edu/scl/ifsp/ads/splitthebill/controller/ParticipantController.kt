@@ -69,6 +69,8 @@ class ParticipantController(mainActivity: MainActivity) {
 
             participantList.add(newParticipant)
         }
+
+        updateInternalValues()
     }
 
     fun getParticipantAt(position: Int): Participant {

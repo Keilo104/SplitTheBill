@@ -70,7 +70,8 @@ ArrayAdapter<Participant>(context, R.layout.tile_participant, participantControl
             holder.nameTv.setTextColor(hexGreen)
             holder.amountOutstandingValueTv.setTextColor(hexGreen)
 
-        } else if (amountOwed.format(2).equals("0.00")) {
+        } else if (amountOwed.format(2).equals("0.00") ||
+            amountOwed.format(2).equals("0,00")) {
             holder.amountOutstandingTv.text = context.resources.getString(R.string.participant_amount_neutral)
 
             val hexBlack = context.resources.getColor(R.color.black)

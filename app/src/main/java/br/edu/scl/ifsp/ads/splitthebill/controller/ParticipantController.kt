@@ -6,7 +6,10 @@ import br.edu.scl.ifsp.ads.splitthebill.model.ParticipantDaoSqlite
 import br.edu.scl.ifsp.ads.splitthebill.view.MainActivity
 
 class ParticipantController(mainActivity: MainActivity) {
-    private val participantDaoImpl: ParticipantDao = ParticipantDaoSqlite(mainActivity)
+    private val participantDaoImpl: ParticipantDao by lazy {
+        ParticipantDaoSqlite(mainActivity)
+    }
+
     private var participantList: MutableList<Participant> = mutableListOf()
     private var totalPurchaseAmount: Double = 0.0
     private var amountOwedPerPerson: Double = 0.0

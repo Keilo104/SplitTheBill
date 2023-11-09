@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="main_activity_toolbar_subtitle">Custo Total da Compra: R$</string>
+    <string name="floating_action_button_description">Adicionar novo participante</string>
+    <string name="menu_item_add_participant">Adicionar novo participante</string>
+    <string name="menu_item_remove_participant">Deletar esse participante</string>
+    <string name="toast_remove_participant">Participante removido!</string>
+    <string name="menu_item_edit_participant">Editar esse participante</string>
+    <string name="participant_amount_spent">Gasto: R$</string>
+    <string name="participant_amount_outstanding_placeholder">A pagar: R$</string>
+    <string name="participant_amount_neutral">Balança neutra: R$</string>
+    <string name="participant_amount_to_receive">A receber: R$</string>
+    <string name="participant_amount_to_pay">A pagar: R$</string>
+    <string name="participant_items_bought">"Itens comprados: "</string>
+    <string name="participant_activity_title_add">Adicione um novo participante!</string>
+    <string name="participant_activity_title_edit">Edite esse participante</string>
+    <string name="participant_activity_title_view">Detalhes do participante</string>
+    <string name="participant_activity_subtitle">Detalhes do participante</string>
+    <string name="participant_name_hint">Nome</string>
+    <string name="participant_amount_spent_hint">Quantidade gasta</string>
+    <string name="participant_item_bought_1_hint">1º item comprado</string>
+    <string name="participant_item_bought_2_hint">2º item comprado</string>
+    <string name="participant_item_bought_3_hint">3º item comprado</string>
+    <string name="participant_activity_save">Salvar!</string>
+    <string name="participant_activity_cancel">Cancelar</string>
+    <string name="participant_activity_return">Voltar</string>
+</resources>

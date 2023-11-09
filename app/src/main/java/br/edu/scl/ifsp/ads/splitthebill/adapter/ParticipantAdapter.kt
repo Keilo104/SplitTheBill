@@ -65,44 +65,30 @@ ArrayAdapter<Participant>(context, R.layout.tile_participant, participantControl
 
         if (amountOwed < 0) {
             holder.amountOutstandingTv.text = context.resources.getString(R.string.participant_amount_to_receive)
-            tpb?.amountOutstandingTv?.text = context.resources.getString(R.string.participant_amount_to_receive)
 
             val hexGreen = context.resources.getColor(R.color.to_receive_green)
             holder.nameTv.setTextColor(hexGreen)
-            tpb?.nameTv?.setTextColor(hexGreen)
             holder.amountOutstandingValueTv.setTextColor(hexGreen)
-            tpb?.amountOutstandingValueTv?.setTextColor(hexGreen)
 
         } else if (amountOwed.format(2).equals("0.00")) {
             holder.amountOutstandingTv.text = context.resources.getString(R.string.participant_amount_neutral)
-            tpb?.amountOutstandingTv?.text = context.resources.getString(R.string.participant_amount_neutral)
 
             val hexBlack = context.resources.getColor(R.color.black)
             holder.nameTv.setTextColor(hexBlack)
-            tpb?.nameTv?.setTextColor(hexBlack)
             holder.amountOutstandingValueTv.setTextColor(hexBlack)
-            tpb?.amountOutstandingValueTv?.setTextColor(hexBlack)
 
         } else {
             holder.amountOutstandingTv.text = context.resources.getString(R.string.participant_amount_to_pay)
-            tpb?.amountOutstandingTv?.text = context.resources.getString(R.string.participant_amount_to_pay)
 
             val hexRed = context.resources.getColor(R.color.to_pay_red)
             holder.nameTv.setTextColor(hexRed)
-            tpb?.nameTv?.setTextColor(hexRed)
             holder.amountOutstandingValueTv.setTextColor(hexRed)
-            tpb?.amountOutstandingValueTv?.setTextColor(hexRed)
         }
 
         holder.nameTv.text = participant.name
         holder.amountSpentValueTv.text = participant.totalAmountSpent.format(2)
         holder.amountOutstandingValueTv.text = absAmountOwed.format(2)
         holder.itemsBoughtValueTv.text = itemsBought
-
-        tpb?.nameTv?.text = participant.name
-        tpb?.amountSpentValueTv?.text = participant.totalAmountSpent.format(2)
-        tpb?.amountOutstandingValueTv?.text = absAmountOwed.format(2)
-        tpb?.itemsBoughtValueTv?.text = itemsBought
 
         return participantTileView
     }

@@ -50,11 +50,13 @@ class ParticipantDaoSqlite(context: Context) : ParticipantDao {
         }
     }
 
-    override fun createParticipant(participant: Participant): Int = participantSQLiteDatabase.insert(
-        PARTICIPANT_TABLE,
-        null,
-        participant.toContentValues()
-    ).toInt()
+    override fun createParticipant(participant: Participant) {
+        participantSQLiteDatabase.insert(
+            PARTICIPANT_TABLE,
+            null,
+            participant.toContentValues()
+        )
+    }
 
     override fun retrieveParticipant(id: Int): Participant? {
         val cursor = participantSQLiteDatabase.rawQuery(
@@ -90,10 +92,10 @@ class ParticipantDaoSqlite(context: Context) : ParticipantDao {
         arrayOf(participant.id.toString())
     )
 
-    override fun deleteParticipant(id: Int): Int = participantSQLiteDatabase.delete(
+    override fun deleteParticipant(participant: Participant): Int = participantSQLiteDatabase.delete(
         PARTICIPANT_TABLE,
         "$ID_COLUMN = ?",
-        arrayOf(id.toString())
+        arrayOf(participant.id.toString())
     )
 
     private fun Cursor.rowToParticipant(): Participant = Participant(

@@ -1,7 +1,7 @@
 package br.edu.scl.ifsp.ads.splitthebill.model
 
 interface ParticipantDao {
-    fun createParticipant(participant: Participant): Int
+    fun createParticipant(participant: Participant)
 
     fun retrieveParticipant(id: Int): Participant?
 
@@ -9,5 +9,5 @@ interface ParticipantDao {
 
     fun updateParticipant(participant: Participant): Int
 
-    fun deleteParticipant(id: Int): Int
+    fun deleteParticipant(participant: Participant): Int
 }

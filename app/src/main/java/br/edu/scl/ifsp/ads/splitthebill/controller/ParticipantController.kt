@@ -1,13 +1,22 @@
 package br.edu.scl.ifsp.ads.splitthebill.controller
 
+import androidx.room.Room
 import br.edu.scl.ifsp.ads.splitthebill.model.Participant
 import br.edu.scl.ifsp.ads.splitthebill.model.ParticipantDao
 import br.edu.scl.ifsp.ads.splitthebill.model.ParticipantDaoSqlite
+import br.edu.scl.ifsp.ads.splitthebill.model.ParticipantRoomDao.Companion.PARTICIPANT_DATABASE_FILE
+import br.edu.scl.ifsp.ads.splitthebill.model.ParticipantRoomDaoDatabase
 import br.edu.scl.ifsp.ads.splitthebill.view.MainActivity
 
 class ParticipantController(mainActivity: MainActivity) {
     private val participantDaoImpl: ParticipantDao by lazy {
         ParticipantDaoSqlite(mainActivity)
+
+        Room.databaseBuilder(
+            mainActivity,
+            ParticipantRoomDaoDatabase::class.java,
+            PARTICIPANT_DATABASE_FILE
+        ).build().getParticipantRoomDao()
     }
 
     private var participantList: MutableList<Participant> = mutableListOf()
@@ -26,11 +35,9 @@ class ParticipantController(mainActivity: MainActivity) {
         return participantList
     }
 
-    fun insertParticipant(participant: Participant): Int {
-        val result = participantDaoImpl.createParticipant(participant)
+    fun insertParticipant(participant: Participant) {
+        participantDaoImpl.createParticipant(participant)
         updateInternalValues()
-
-        return result
     }
 
     fun getParticipant(id: Int) = participantDaoImpl.retrieveParticipant(id)
@@ -48,7 +55,7 @@ class ParticipantController(mainActivity: MainActivity) {
 
     fun removeParticipant(position: Int) {
         val participant = getParticipantAt(position)
-        participantDaoImpl.deleteParticipant(participant.id)
+        participantDaoImpl.deleteParticipant(participant)
         participantList.removeAt(position)
         updateInternalValues()
     }
